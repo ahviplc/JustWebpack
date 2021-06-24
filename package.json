@@ -1,0 +1,45 @@
+{
+  "name": "JustWebpack",
+  "version": "1.0.0",
+  "description": "JustWebpack,Webpack打包小demo.",
+  "type": "commonjs",
+  "scripts": {
+    "build": "webpack",
+    "serve": "vite dist --port 8568",
+    "build:env": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "serve:env": "cross-env NODE_ENV=development webpack serve --config webpack.config.js"
+  },
+  "keywords": [
+    "Webpack",
+    "demo"
+  ],
+  "author": "LC ahlc@sina.cn",
+  "homepage": "https://gitee.com/ahviplc/JustWebpack",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.2",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.0",
+    "raw-loader": "^4.0.2",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^9.2.3",
+    "url-loader": "^4.1.1",
+    "vite": "^2.3.8",
+    "vue-loader": "^15.9.7",
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "main": "",
+  "module": "",
+  "files": [
+    "src",
+    "tests",
+    "README.md"
+  ],
+  "dependencies": {}
+}
