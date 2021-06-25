@@ -13,6 +13,7 @@ webpack.config.js  webpack的配置文件
 // resolve用来拼接绝对路径的方法
 const {resolve} = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
     // webpack配置
@@ -51,11 +52,23 @@ module.exports = {
                 // 处理less资源
                 test: /\.less$/,
                 use: [
-                    'style-loader',
-                    'css-loader',
-                    // 将less文件编译成css文件
-                    // 需要下载 less-loader和less
-                    'less-loader'
+                    // 写法一
+                    // 'style-loader',
+                    // 'css-loader',
+                    // // 将less文件编译成css文件
+                    // // 需要下载 less-loader和less
+                    // 'less-loader'
+
+                    // 写法二
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'less-loader',
+                    }
                 ]
             },
             {
@@ -65,14 +78,24 @@ module.exports = {
                 // loader 从右到左（或从下到上）地取值(evaluate)/执行(execute)
                 // 创建style标签，将js中的样式资源插入进行，添加到head中生效
                 use: [
-                    'style-loader',
-                    //'css-loader',
+                    // 写法一
+                    // 'style-loader',
+                    // //'css-loader',
+                    // {
+                    //     loader: 'css-loader',
+                    //     options: {
+                    //         esModule: false
+                    //     }
+                    // }
+
+                    // 写法二
+                    {
+                        loader: 'style-loader',
+                    },
                     {
                         loader: 'css-loader',
-                        options: {
-                            modules: true
-                        }
-                    }]
+                    }
+                ]
             },
             {
                 // 处理图片资源
@@ -99,13 +122,14 @@ module.exports = {
                 // 处理html中img资源
                 // test表示匹配
                 test: /\.html$/,
-                loader: 'html-loader'
+                loader: 'html-loader',
+                options: {esModule: false}
             },
             {
                 // 处理其他资源
                 // 打包除了html|js|css|less|jpg|png|gif的其他资源
                 // explode表示排除
-                exclude: /\.(html|js|css|less|jpg|png|gif)/,
+                exclude: /\.(html|js|css|less|jpg|png|gif)$/,
                 loader: 'file-loader',
                 options: {
                     name: '[hash:10].[ext]',
@@ -123,7 +147,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             minify: false // 是否压缩
-        })
+        }),
+        new VueLoaderPlugin()
     ],
     // 模式
     mode: 'development', // 开发模式

@@ -60,6 +60,12 @@ https://webpack.js.org/concepts/#loaders
 
 划词翻译
 https://github.com/lmk123/crx-selection-translate#readme
+
+webpack5打包静态html中img标签引入图片不显示问题_xinga1016的博客-CSDN博客
+https://blog.csdn.net/weixin_45226867/article/details/114445464
+
+webpack编译遇到的问题：Error: Cannot find module 'webpack-cli/bin/config-yargs' - JaceyKan - 博客园
+https://www.cnblogs.com/jeacy/p/13864454.html
 ```
 
 ## Notes
@@ -78,7 +84,7 @@ https://github.com/lmk123/crx-selection-translate#readme
 ### 2. 注意点
 
 ```markdown
-
+src/js/index.js:1 这个有个注意点 描述
 ```
 
 ### 3. 小知识
@@ -92,6 +98,8 @@ AMD：Asynchronous Module Definition（异步模块规范），为浏览器设�
 
 UMD：Universal Module Definition（通用模块规范），是由社区想出来的一种整合了CommonJS和AMD两个模块定义规范的方法。让你的模块能在javascript所有运行环境中发挥作用。
 ```
+
+`可使用 idea插件 File Watcher to compile LESS to CSS`
 
 ## Author
 
