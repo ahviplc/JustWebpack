@@ -66,6 +66,49 @@ https://blog.csdn.net/weixin_45226867/article/details/114445464
 
 webpack编译遇到的问题：Error: Cannot find module 'webpack-cli/bin/config-yargs' - JaceyKan - 博客园
 https://www.cnblogs.com/jeacy/p/13864454.html
+
+@babel/polyfill · Babel 中文网
+https://www.babeljs.cn/docs/babel-polyfill
+
+path-browserify - npm
+https://www.npmjs.com/package/path-browserify
+
+GitHub - browserify/path-browserify: The path module from Node.js for browsers
+https://github.com/browserify/path-browserify
+
+666666 - webpack5升级过程遇到的一些坑？ - xccjk - 博客园
+https://www.cnblogs.com/sk-3/p/14147612.html
+
+webpack5 nodejs模块polyfill（Buffer）__Captain_的博客-CSDN博客
+https://blog.csdn.net/qq_39807732/article/details/110089893
+
+构建目标(Targets) | webpack 中文文档
+https://webpack.docschina.org/configuration/target/
+
+外部扩展(externals) | webpack 中文文档
+https://webpack.docschina.org/configuration/externals/#root
+
+可参考的webpack配置
+jjb/webpack.config.js at master · sunoj/jjb · GitHub
+https://hub.fastgit.org/sunoj/jjb/blob/master/webpack.config.js
+
+Lodash 简介 | Lodash 中文文档 | Lodash 中文网
+https://www.lodashjs.com/
+
+GitHub - lodash/lodash: A modern JavaScript utility library delivering modularity, performance, & extras.
+https://github.com/lodash/lodash
+
+logline - npm
+https://www.npmjs.com/package/logline
+
+GitHub - latel/logline: client-side frontend logger with multiple storagies
+https://github.com/latel/logline
+
+luxon - npm
+https://www.npmjs.com/package/luxon
+
+GitHub - moment/luxon: ⏱ A library for working with dates and times in JS
+https://github.com/moment/luxon
 ```
 
 ## Notes
@@ -84,7 +127,9 @@ https://www.cnblogs.com/jeacy/p/13864454.html
 ### 2. 注意点
 
 ```markdown
-src/js/index.js:1 这个有个注意点 描述
+* src/js/index.js:1 这个有个注意点 描述.
+* 在webpack5中移除了nodejs核心模块的polyfill自动引入，所以需要手动引入，如果打包过程中有使用到nodejs核心模块，webpack会提示进行相应配置.
+* 此仓库 https://hub.fastgit.org/sunoj/jjb/blob/master/package.json 其所用依赖 也可学习一下.
 ```
 
 ### 3. 小知识
@@ -100,6 +145,37 @@ UMD：Universal Module Definition（通用模块规范），是由社区想出�
 ```
 
 `可使用 idea插件 File Watcher to compile LESS to CSS`
+
+### 4. 代码段
+
+`fs path`
+
+在这 `src/js/index.js` 文件里的话
+
+```js
+
+const path = require('path')
+
+// 下面都是输出
+// C:\_developSoftKu\ideaIU-2019.1.3.win\CodeKu2\JustWebpack\src\js
+// console.log(__dirname)
+// console.log(path.resolve(__dirname));
+// console.log(path.resolve(__dirname));
+// console.log(path.resolve('./'));
+// console.log(path.join(__dirname));
+// console.log(process.cwd());
+
+// 这个符合要求
+// 输出 C:\_developSoftKu\ideaIU-2019.1.3.win\CodeKu2\JustWebpack\src
+// console.log(path.resolve('../'));
+
+console.log(path.join(path.resolve('../'), 'media/README.txt'));
+// C:\_developSoftKu\ideaIU-2019.1.3.win\CodeKu2\JustWebpack\src\media\README.txt
+
+const fs = require('fs')
+const txt = fs.readFileSync(path.join(path.resolve('../'),'media/README.txt'),'utf8');
+console.log(txt)
+```
 
 ## Author
 

@@ -8,6 +8,9 @@ webpack.config.js  webpack的配置文件
       webpack 会将打包结果输出出去
       npx webpack-dev-server 只会在内存中编译打包，没有输出
       启动devServer指令为：npx webpack-dev-server
+
+      注意:
+      在webpack-cli 4.x中，不能过webpack-dev-server启动项目了，需要通过webpack serve...或者修改webpack-cli版本改为3.x
 */
 
 // resolve用来拼接绝对路径的方法
@@ -43,7 +46,9 @@ module.exports = {
                 test: /\.ts$/,
                 use: 'ts-loader'
             },
-            // 处理vue
+            // 处理 vue
+            // 注意处理 vue css 的话 使用 vue-style-loader
+            // 可参考 https://hub.fastgit.org/sunoj/jjb/blob/master/webpack.config.js 配置
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
@@ -119,6 +124,13 @@ module.exports = {
                 }
             },
             {
+                // 处理svg
+                test: /\.svg$/,
+                use: [
+                    'svg-url-loader',
+                ]
+            },
+            {
                 // 处理html中img资源
                 // test表示匹配
                 test: /\.html$/,
@@ -161,5 +173,28 @@ module.exports = {
         port: 3000, // 设置端口
         open: true, // 打开浏览器
         progress: true // 显示进度
-    }
+    },
+    // // 先配置 不启用
+    // resolve: {
+    //     // https://github.com/babel/babel/issues/8462
+    //     // https://blog.csdn.net/qq_39807732/article/details/110089893
+    //     // 如果确认需要node polyfill，设置resolve.fallback安装对应的依赖
+    //     fallback: {
+    //         // crypto: require.resolve('crypto-browserify'),
+    //         path: require.resolve('path-browserify'),
+    //         // url: require.resolve('url'),
+    //         // buffer: require.resolve('buffer/'),
+    //         // util: require.resolve('util/'),
+    //         // stream: require.resolve('stream-browserify/'),
+    //         // vm: require.resolve('vm-browserify')
+    //     },
+    //     // 如果确认不需要node polyfill，设置resolve.alias设置为false
+    //     alias: {
+    //         crypto: false
+    //     }
+    // },
+    // 构建目标
+    target: 'web', // node webpack 将在类 Node.js 环境编译代码 || 默认 web 编译为类浏览器环境里可用
+    // 外部扩展
+    externals: {}
 };

@@ -5,10 +5,14 @@
   "type": "commonjs",
   "scripts": {
     "build": "webpack",
+    "build-config": "npx webpack --config webpack.config.js",
+    "build-prod": "cross-env NODE_ENV=production yarn build-config",
+    "build-npx": "npx webpack",
+    "watch": "webpack --watch",
     "serve": "vite dist --port 8568",
     "dev": "webpack serve --mode development --env development",
-    "build:env": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "serve:env": "cross-env NODE_ENV=development webpack serve --config webpack.config.js"
+    "build:env-prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "serve:env-dev": "cross-env NODE_ENV=development webpack serve --config webpack.config.js"
   },
   "keywords": [
     "Webpack",
@@ -27,6 +31,7 @@
     "less-loader": "^10.0.0",
     "raw-loader": "^4.0.2",
     "style-loader": "^2.0.0",
+    "svg-url-loader": "^7.1.1",
     "ts-loader": "^9.2.3",
     "url-loader": "^4.1.1",
     "vite": "^2.3.8",
@@ -35,6 +40,7 @@
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   },
+  "bin": "",
   "main": "",
   "module": "",
   "files": [
